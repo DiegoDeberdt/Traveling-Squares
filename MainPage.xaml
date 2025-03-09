@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="TravelingSquares.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TravelingSquares"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="450" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ProgressRing IsActive="{Binding IsBusy}" Canvas.ZIndex="10" Height="80" Width="80" Foreground="Yellow" />
+
+        <Canvas x:Name="DrawingCanvas" Loaded="DrawingCanvas_Loaded" MinWidth="800" MinHeight="800" />
+        
+        <StackPanel Grid.Column="1" Orientation="Vertical" Padding="10 0 0 0">
+            <Button Content="New Model" Command="{Binding NewModelCommand}" />
+            
+            <Line X2="425" Stroke="Black" Margin="0 5 0 5" />
+            
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Resolution:" FontWeight="Bold"/>
+                <Slider HorizontalAlignment="Left"
+                        Value="{Binding Resolution, Mode=TwoWay}" Width="250" Minimum="10" Maximum="50" 
+                        TickFrequency="10" TickPlacement="Outside"
+                        ManipulationMode="All" ManipulationCompleted="ResolutionSlider_ManipulationCompleted"></Slider>                
+            </StackPanel>
+            
+            <Line X2="425" Stroke="Black" Margin="0 5 0 5" />
+            
+            <CheckBox Content="Show Dots" IsChecked="{Binding ShowDots, Mode=TwoWay}" 
+                      Command="{Binding ShowDotsCommand}" CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
+
+            <CheckBox Content="Show White Dots" IsChecked="{Binding ShowWhiteDots, Mode=TwoWay}"
+                      Command="{Binding ShowWhiteDotsCommand}" CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="White Dot Size" FontWeight="Bold" />
+                <Slider Minimum="0" Maximum="100" Width="250" Value="{Binding WhiteDotSize, Mode=TwoWay}" HorizontalAlignment="Left" 
+                        ManipulationMode="All" ManipulationCompleted="DotSizeSlider_ManipulationCompleted"/>
+            </StackPanel>
+
+            <CheckBox Content="Show Black Dots" IsChecked="{Binding ShowBlackDots, Mode=TwoWay}"
+                      Command="{Binding ShowBlackDotsCommand}" CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Black Dot Size" FontWeight="Bold" />
+                <Slider Minimum="0" Maximum="100" Width="250" Value="{Binding BlackDotSize, Mode=TwoWay}" HorizontalAlignment="Left" 
+                        ManipulationMode="All" ManipulationCompleted="DotSizeSlider_ManipulationCompleted"/>                
+            </StackPanel>
+            
+            <Line X2="425" Stroke="Black" Margin="0 5 0 5" />
+            
+            <CheckBox Content="Show Lines" IsChecked="{Binding ShowLines, Mode=TwoWay}" 
+                      Command="{Binding ShowLinesCommand}" CommandParameter="{Binding IsChecked, RelativeSource={RelativeSource Self}}"/>
+
+            <Slider Minimum="1" Maximum="25" Width="250" Value="{Binding LineThickness, Mode=TwoWay}" HorizontalAlignment="Left"
+                    ManipulationMode="All" ManipulationCompleted="LineThickness_ManipulationCompleted" />
+        </StackPanel>
+    </Grid>
+</Page>
