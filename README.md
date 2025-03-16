@@ -3,6 +3,8 @@
 ## **Overview**
 The **Traveling Squares** UWP application is a graphical program that visualizes a grid-based system of dots and lines, inspired by **Marching Squares** or similar computational geometry techniques.
 
+![Traveling Squares Screenshot](traveling-squares.png)
+
 ## **What the application does**
 1. **Displays a grid of dots**:
    - The grid is dynamically generated based on a `resolution` value.
